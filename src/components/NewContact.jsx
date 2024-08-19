@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 function NewContact(props) {
+  const [contact, setContact] = useState({
+    id: "",
+    name: "",
+    number: "",
+    url: "",
+  });
+
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    console.log("changed here");
+    setContact((prevContact) => ({
+      ...prevContact,
+      [name]: value,
+    }));
+  }
+  console.log(contact);
+
   return (
     <form onSubmit={(event) => props.handleSubmit(event)}>
       <h1>New Contact</h1>
@@ -10,8 +27,8 @@ function NewContact(props) {
         id="name"
         type="text"
         name="name"
-        value={props.contact.name}
-        onChange={(event) => props.handleInputChange(event)}
+        value={contact.name}
+        onChange={(event) => handleInputChange(event)}
       />
       <br />
       <label htmlFor="phone-input">Phone number</label>
@@ -19,8 +36,8 @@ function NewContact(props) {
       <input
         placeholder="(  )    -    "
         name="number"
-        value={props.contact.number}
-        onChange={(event) => props.handleInputChange(event)}
+        value={contact.number}
+        onChange={(event) => handleInputChange(event)}
       />
       <br />
       <label htmlFor="url">Profile picture</label>
@@ -29,8 +46,8 @@ function NewContact(props) {
         id="url"
         type="text"
         name="url"
-        value={props.contact.url}
-        onChange={(event) => props.handleInputChange(event)}
+        value={contact.url}
+        onChange={(event) => handleInputChange(event)}
       />
       <br />
       <button>Submit</button>
