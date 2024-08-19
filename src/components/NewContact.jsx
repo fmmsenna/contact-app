@@ -10,16 +10,14 @@ function NewContact(props) {
 
   function handleInputChange(event) {
     const { name, value } = event.target;
-    console.log("changed here");
     setContact((prevContact) => ({
       ...prevContact,
       [name]: value,
     }));
   }
-  console.log(contact);
 
   return (
-    <form onSubmit={(event) => props.handleSubmit(event)}>
+    <form onSubmit={(event) => props.handleSubmit(event, contact)}>
       <h1>New Contact</h1>
       <label htmlFor="name">Name</label>
       <br />
@@ -35,6 +33,7 @@ function NewContact(props) {
       <br />
       <input
         placeholder="(  )    -    "
+        type="number"
         name="number"
         value={contact.number}
         onChange={(event) => handleInputChange(event)}

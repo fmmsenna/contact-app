@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NewContact from "./NewContact";
 
 function ContactList() {
   const [list, setList] = useState([]);
 
-  //No submit do formulário vc vai pegar o state do formulário e adicionar no state da lista
-  //   function handleSubmit(event) {
-  //     event.preventDefault();
-  //     if (!contact.name || !contact.number || !contact.url) {
-  //       console.log("Fill in the form");
-  //     } else {
-  //       console.log("Created");
-  //     }
-  //   }
-
-  function handleSubmit() {}
+  function handleSubmit(event, contact) {
+    event.preventDefault();
+    if (!contact.name || !contact.number || !contact.url) {
+      console.log("Fill in the form");
+    } else {
+      setList((prevList) => {
+        const newList = [...prevList, contact];
+        return newList;
+      });
+    }
+  }
 
   return (
     <div>
