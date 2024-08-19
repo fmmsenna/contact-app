@@ -20,6 +20,7 @@ function ContactList() {
   const cards = list.map((contact) => {
     return (
       <ContactCard
+        key={contact.number}
         name={contact.name}
         number={contact.number}
         url={contact.url}
