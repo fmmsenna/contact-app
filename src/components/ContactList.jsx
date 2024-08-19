@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NewContact from "./NewContact";
+import ContactCard from "./ContactCard";
 
 function ContactList() {
   const [list, setList] = useState([]);
@@ -16,10 +17,21 @@ function ContactList() {
     }
   }
 
+  const cards = list.map((contact) => {
+    return (
+      <ContactCard
+        name={contact.name}
+        number={contact.number}
+        url={contact.url}
+      />
+    );
+  });
+
   return (
     <div>
       <h2>ContactList</h2>
       <button>New +</button>
+      {cards}
       <NewContact handleSubmit={handleSubmit} />
     </div>
   );
