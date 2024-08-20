@@ -3,8 +3,8 @@ import React, { useState } from "react";
 function NewContact(props) {
   const [contact, setContact] = useState({
     name: "",
-    number: "",
-    url: "",
+    phone_number: "",
+    profile_url: "",
   });
 
   function handleInputChange(event) {
@@ -33,8 +33,8 @@ function NewContact(props) {
       <input
         placeholder="(  )    -    "
         type="number"
-        name="number"
-        value={contact.number}
+        name="phone_number"
+        value={contact.phone_number}
         onChange={(event) => handleInputChange(event)}
       />
       <br />
@@ -43,8 +43,8 @@ function NewContact(props) {
       <input
         id="url"
         type="text"
-        name="url"
-        value={contact.url}
+        name="profile_url"
+        value={contact.profile_url}
         onChange={(event) => handleInputChange(event)}
       />
       <br />

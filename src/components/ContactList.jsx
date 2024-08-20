@@ -6,7 +6,8 @@ import supabase from "../supabase";
 function ContactList() {
   const [list, setList] = useState([]);
 
-  console.log(supabase);
+  //   console.log(supabase);
+  //   console.log(list);
 
   useEffect(() => {
     console.log("useEffect called");
@@ -27,7 +28,7 @@ function ContactList() {
 
   function handleSubmit(event, contact) {
     event.preventDefault();
-    if (!contact.name || !contact.number || !contact.url) {
+    if (!contact.name || !contact.phone_number || !contact.profile_url) {
       console.log("Fill in the form");
     } else {
       setList((prevList) => {
@@ -37,22 +38,17 @@ function ContactList() {
     }
   }
 
-  const cards = list.map((contact) => {
-    return (
-      <ContactCard
-        key={contact.phone_number}
-        name={contact.name}
-        number={contact.phone_number}
-        url={contact.profile_url}
-      />
-    );
-  });
-
   return (
     <div>
       <h2>ContactList</h2>
       <button>New +</button>
-      {cards}
+      {list && (
+        <div className="contact-card">
+          {list.map((contact) => (
+            <ContactCard key={contact.id} contact={contact} />
+          ))}
+        </div>
+      )}
       <NewContact handleSubmit={handleSubmit} />
     </div>
   );

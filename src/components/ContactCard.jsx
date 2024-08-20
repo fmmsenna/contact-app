@@ -1,11 +1,11 @@
 import React from "react";
 
-function ContactCard({ name, number, url }) {
+function ContactCard({ contact }) {
   return (
     <div>
-      <img src={url} className="card--img" />
-      <p>{name}</p>
-      <small>{number}</small>
+      <img src={contact.profile_url} className="card--img" />
+      <p>{contact.name}</p>
+      <small>{contact.phone_number}</small>
       <button>X</button>
     </div>
   );
