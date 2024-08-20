@@ -9,17 +9,19 @@ function ContactList() {
   console.log(supabase);
 
   useEffect(() => {
+    console.log("useEffect called");
     async function fetchContacts() {
-      const { data, error } = await supabase.from("contacts").select("*");
+      const { data, error } = await supabase.from("contacts").select();
 
       if (error) {
         console.log(error);
+      }
 
-        if (data) {
-          console.log(data);
-        }
+      if (data) {
+        setList(data);
       }
     }
+
     fetchContacts();
   }, []);
 
@@ -38,10 +40,10 @@ function ContactList() {
   const cards = list.map((contact) => {
     return (
       <ContactCard
-        key={contact.number}
+        key={contact.phone_number}
         name={contact.name}
-        number={contact.number}
-        url={contact.url}
+        number={contact.phone_number}
+        url={contact.profile_url}
       />
     );
   });
