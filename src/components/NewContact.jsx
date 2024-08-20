@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import supabase from "../supabase";
 
 function NewContact() {
@@ -83,6 +83,10 @@ function NewContact() {
       />
       <br />
       <button>Submit</button>
+      <Link to="/">
+        <button>Cancelar</button>
+      </Link>
+
       {formError && <p>Please fill in all fields!</p>}
     </form>
   );

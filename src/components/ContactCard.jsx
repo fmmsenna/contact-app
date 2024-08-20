@@ -1,5 +1,4 @@
 import React from "react";
-import supabase from "../supabase";
 
 function ContactCard({ contact, handleDelete }) {
   return (

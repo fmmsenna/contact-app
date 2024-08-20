@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ContactCard from "./ContactCard";
 import supabase from "../supabase";
+import { Link } from "react-router-dom";
 
 function ContactList() {
   const [list, setList] = useState([]);
@@ -43,7 +44,9 @@ function ContactList() {
   return (
     <div>
       <h2>ContactList</h2>
-      <button>New +</button>
+      <Link to="/edit">
+        <button>New + </button>
+      </Link>
       {list && (
         <div className="contact-card">
           {list.map((contact) => (
