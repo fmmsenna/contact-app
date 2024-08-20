@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function NewContact(props) {
   const [contact, setContact] = useState({
-    id: "",
     name: "",
     number: "",
     url: "",

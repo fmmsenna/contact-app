@@ -1,9 +1,27 @@
 import React, { useState, useEffect } from "react";
 import NewContact from "./NewContact";
 import ContactCard from "./ContactCard";
+import supabase from "../supabase";
 
 function ContactList() {
   const [list, setList] = useState([]);
+
+  console.log(supabase);
+
+  useEffect(() => {
+    async function fetchContacts() {
+      const { data, error } = await supabase.from("contacts").select("*");
+
+      if (error) {
+        console.log(error);
+
+        if (data) {
+          console.log(data);
+        }
+      }
+    }
+    fetchContacts();
+  }, []);
 
   function handleSubmit(event, contact) {
     event.preventDefault();
