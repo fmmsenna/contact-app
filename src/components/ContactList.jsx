@@ -34,6 +34,9 @@ function ContactList() {
     }
     if (data) {
       console.log(data);
+      setList((prevList) =>
+        prevList.filter((item) => item.user_id != contactId)
+      );
     }
   }
 
