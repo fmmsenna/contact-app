@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+
 import ContactList from "./components/ContactList";
 import NewContact from "./components/NewContact";
 
@@ -20,7 +21,6 @@ const appRouter = createBrowserRouter(
 function App() {
   return (
     <div>
-      <h1>App</h1>
       <RouterProvider router={appRouter} />
     </div>
   );
