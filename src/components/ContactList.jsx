@@ -23,6 +23,20 @@ function ContactList() {
     fetchContacts();
   }, []);
 
+  async function handleDelete(contactId) {
+    const { data, error } = await supabase
+      .from("contacts")
+      .delete()
+      .eq("user_id", contactId)
+      .select();
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      console.log(data);
+    }
+  }
+
   return (
     <div>
       <h2>ContactList</h2>
@@ -30,7 +44,11 @@ function ContactList() {
       {list && (
         <div className="contact-card">
           {list.map((contact) => (
-            <ContactCard key={contact.user_id} contact={contact} />
+            <ContactCard
+              key={contact.user_id}
+              contact={contact}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       )}
