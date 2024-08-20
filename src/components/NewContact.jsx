@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import supabase from "../supabase";
 
-function NewContact(props) {
+function NewContact() {
+  const navigate = useNavigate();
+
   const [contact, setContact] = useState({
     name: "",
     phone_number: "",
     profile_url: "",
   });
+  const [formError, setFormError] = useState(false);
 
   function handleInputChange(event) {
+    setFormError(false);
     const { name, value } = event.target;
     setContact((prevContact) => ({
       ...prevContact,
@@ -15,8 +21,35 @@ function NewContact(props) {
     }));
   }
 
+  async function handleSubmitSupabase(e) {
+    e.preventDefault();
+    if (!contact.name || !contact.phone_number || !contact.profile_url) {
+      setFormError((prevState) => !prevState);
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("contacts")
+      .insert([
+        {
+          name: contact.name,
+          phone_number: contact.phone_number,
+          profile_url: contact.profile_url,
+        },
+      ])
+      .select();
+    if (error) {
+      console.log(error);
+      setFormError((prevState) => !prevState);
+    }
+    if (data) {
+      setFormError(false);
+      navigate("/");
+    }
+  }
+
   return (
-    <form onSubmit={(event) => props.handleSubmit(event, contact)}>
+    <form onSubmit={handleSubmitSupabase}>
       <h1>New Contact</h1>
       <label htmlFor="name">Name</label>
       <br />
@@ -31,6 +64,7 @@ function NewContact(props) {
       <label htmlFor="phone-input">Phone number</label>
       <br />
       <input
+        id="phone-input"
         placeholder="(  )    -    "
         type="number"
         name="phone_number"
@@ -49,6 +83,7 @@ function NewContact(props) {
       />
       <br />
       <button>Submit</button>
+      {formError && <p>Please fill in all fields!</p>}
     </form>
   );
 }
