@@ -6,7 +6,7 @@ function ContactCard({ contact, handleDelete }) {
       <img src={contact.profile_url} className="card--img" />
       <p>{contact.name}</p>
       <small>{contact.phone_number}</small>
-      <button onClick={() => handleDelete(contact.user_id)}>X</button>
+      <button onClick={() => handleDelete(contact.contact_id)}>X</button>
     </div>
   );
 }

@@ -12,7 +12,10 @@ function ContactList() {
   useEffect(() => {
     console.log("useEffect called");
     async function fetchContacts() {
-      const { data, error } = await supabase.from("contacts").select();
+      const { data, error } = await supabase
+        .from("contacts")
+        .select()
+        .order("name");
       if (error) {
         console.log(error);
       }
@@ -28,7 +31,7 @@ function ContactList() {
     const { data, error } = await supabase
       .from("contacts")
       .delete()
-      .eq("user_id", contactId)
+      .eq("contact_id", contactId)
       .select();
     if (error) {
       console.log(error);
@@ -36,7 +39,7 @@ function ContactList() {
     if (data) {
       console.log(data);
       setList((prevList) =>
-        prevList.filter((item) => item.user_id != contactId)
+        prevList.filter((item) => item.contact_id != contactId)
       );
     }
   }
@@ -51,7 +54,7 @@ function ContactList() {
         <div className="contact-card">
           {list.map((contact) => (
             <ContactCard
-              key={contact.user_id}
+              key={contact.contact_id}
               contact={contact}
               handleDelete={handleDelete}
             />
