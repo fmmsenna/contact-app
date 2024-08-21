@@ -76,12 +76,16 @@ function Login() {
 
   return (
     <div>
+      {/* 
+        REDIRECT PARA SIGN-UP USANDO EMAIL + SENHA
       <small>
         <Link to="/sign-up">Sign-up</Link>
-      </small>
+      </small> */}
 
       <h1>Sign-in to Contacts App ✅</h1>
-      {/* <form>
+      {/*
+      FORM CONSIDERANDO EMAIL + SENHA
+       <form>
         <label htmlFor="email">Your email</label>
         <br />
         <input
