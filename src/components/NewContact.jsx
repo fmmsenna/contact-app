@@ -39,7 +39,6 @@ function NewContact() {
       ])
       .select();
     if (error) {
-      console.log(error);
       setFormError((prevState) => !prevState);
     }
     if (data) {
