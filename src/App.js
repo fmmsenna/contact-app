@@ -8,11 +8,15 @@ import {
 
 import ContactList from "./components/ContactList";
 import NewContact from "./components/NewContact";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<ContactList />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/contact-list" element={<ContactList />} />
       <Route path="/edit" element={<NewContact />} />
     </>
   )
