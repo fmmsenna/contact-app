@@ -19,6 +19,8 @@ function Login() {
     }));
   }
 
+  //FUNÇÃO CONSIDERANDO LOGIN COM EMAIL + SENHA
+  /*
   async function signInWithEmail(e) {
     e.preventDefault();
 
@@ -43,6 +45,34 @@ function Login() {
       //   navigate("/contact-list"); - PRECISO ROUTEAR PARA O ID CORRETO DA PESSOA
     }
   }
+*/
+
+  //FUNÇÃO CONSIDERANDO MAGIC LINK
+  async function signInWithEmail(e) {
+    e.preventDefault();
+
+    if (!user.email) {
+      setFormError("Preencha um email válido, no formato seunome@email.com");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signInWithOtp({
+      email: user.email,
+      options: {
+        // set this to false if you do not want the user to be automatically signed up
+        shouldCreateUser: true,
+        // emailRedirectTo: "https://www.globo.com/",
+      },
+    });
+    if (error) {
+      setFormError("Preencha um email válido, no formato seunome@email.com");
+      return;
+    }
+    if (data) {
+      console.log("Done!");
+      navigate("/check-email");
+    }
+  }
 
   return (
     <div>
@@ -51,7 +81,7 @@ function Login() {
       </small>
 
       <h1>Sign-in to Contacts App ✅</h1>
-      <form onSubmit={signInWithEmail}>
+      {/* <form>
         <label htmlFor="email">Your email</label>
         <br />
         <input
@@ -73,9 +103,19 @@ function Login() {
         />
         <br />
         <button>Login</button>
-      </form>
+      </form> */}
       <br />
-      <button>Login with magic link ✨</button>
+      <form onSubmit={signInWithEmail}>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          onChange={(event) => handleChange(event)}
+          value={user.email}
+        />
+        <br />
+        <button>Login with magic link ✨</button>
+      </form>
       <p>{formError}</p>
     </div>
   );
