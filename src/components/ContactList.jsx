@@ -6,7 +6,7 @@ import { SessionContext } from "./SessionContext";
 
 function ContactList() {
   const [list, setList] = useState([]);
-  const { session, setSession } = useContext(SessionContext);
+  const { setSession } = useContext(SessionContext);
   const navigate = useNavigate();
 
   useEffect(() => {
