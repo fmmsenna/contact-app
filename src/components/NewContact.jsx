@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import supabase from "../supabase";
 import { SessionContext } from "./SessionContext";
 
@@ -102,9 +102,9 @@ function NewContact() {
       />
       <br />
       <button>Submit</button>
-      <Link to="/">
+      <Navigate to="/">
         <button>Cancelar</button>
-      </Link>
+      </Navigate>
 
       {formError && <p>Please fill in all fields!</p>}
     </form>
