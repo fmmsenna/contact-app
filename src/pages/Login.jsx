@@ -6,7 +6,7 @@ import { SessionContext } from "../components/SessionContext";
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState(null);
-  const { session, setSession } = useContext(SessionContext);
+  const { setSession } = useContext(SessionContext);
 
   const navigate = useNavigate();
 
