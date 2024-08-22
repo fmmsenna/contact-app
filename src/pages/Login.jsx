@@ -86,7 +86,6 @@ function Login() {
       return;
     }
     if (data) {
-      console.log("Done!");
       navigate("/check-email");
     }
   }

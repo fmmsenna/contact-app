@@ -6,7 +6,7 @@ import { SessionContext } from "./SessionContext";
 
 function ContactList() {
   const [list, setList] = useState([]);
-  const { setSession } = useContext(SessionContext);
+  const { session, setSession } = useContext(SessionContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,7 +52,6 @@ function ContactList() {
       console.log(error);
     }
     if (data) {
-      console.log(data);
       setList((prevList) =>
         prevList.filter((item) => item.contact_id != contactId)
       );
