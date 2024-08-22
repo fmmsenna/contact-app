@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import supabase from "../supabase";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../components/SessionContext";
 
 function Login() {
