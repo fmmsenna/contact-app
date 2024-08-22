@@ -1,20 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 import ContactCard from "./ContactCard";
 import supabase from "../supabase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "./SessionContext";
 
 function ContactList() {
   const [list, setList] = useState([]);
   const { setSession } = useContext(SessionContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSession = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
+
       if (session) {
         setSession(session);
+      } else {
+        navigate("/");
       }
     };
 
@@ -55,11 +59,22 @@ function ContactList() {
     }
   }
 
+  async function signOut() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <h2>ContactList</h2>
       <Link to="/edit">
         <button>New + </button>
+      </Link>
+      <Link to="/">
+        <button onClick={signOut}>Sign-out</button>
       </Link>
       {list && (
         <div className="contact-card">
