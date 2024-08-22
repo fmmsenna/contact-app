@@ -5,6 +5,7 @@ import {
   createRoutesFromElements,
   Route,
 } from "react-router-dom";
+import { SessionProvider } from "./components/SessionContext";
 
 import ContactList from "./components/ContactList";
 import NewContact from "./components/NewContact";
@@ -29,7 +30,9 @@ const appRouter = createBrowserRouter(
 function App() {
   return (
     <div>
-      <RouterProvider router={appRouter} />
+      <SessionProvider>
+        <RouterProvider router={appRouter} />
+      </SessionProvider>
     </div>
   );
 }

@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import supabase from "../supabase";
+import { SessionContext } from "./SessionContext";
 
 function NewContact() {
+  const { session, setSession } = useContext(SessionContext);
+
   const navigate = useNavigate();
 
   const [contact, setContact] = useState({
     name: "",
     phone_number: "",
     profile_url: "",
+    contact_id: "",
   });
   const [formError, setFormError] = useState(false);
+
+  useEffect(() => {
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session) {
+        setSession(session);
+      }
+    };
+
+    getSession();
+  }, []);
 
   function handleInputChange(event) {
     setFormError(false);
@@ -35,15 +52,18 @@ function NewContact() {
           name: contact.name,
           phone_number: contact.phone_number,
           profile_url: contact.profile_url,
+          customer_id: session.user.id,
         },
       ])
       .select();
+
     if (error) {
+      console.log(error);
       setFormError((prevState) => !prevState);
     }
     if (data) {
       setFormError(false);
-      navigate("/");
+      navigate("/contact-list");
     }
   }
 

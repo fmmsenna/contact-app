@@ -1,12 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import supabase from "../supabase";
 import { Link, useNavigate } from "react-router-dom";
+import { SessionContext } from "../components/SessionContext";
 
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState(null);
+  const { session, setSession } = useContext(SessionContext);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        setSession(null);
+      } else if (session) {
+        setSession(session);
+        navigate("/contact-list");
+      }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -59,9 +78,7 @@ function Login() {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: user.email,
       options: {
-        // set this to false if you do not want the user to be automatically signed up
         shouldCreateUser: true,
-        // emailRedirectTo: "https://www.globo.com/",
       },
     });
     if (error) {

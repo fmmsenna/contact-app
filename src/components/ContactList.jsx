@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ContactCard from "./ContactCard";
 import supabase from "../supabase";
 import { Link } from "react-router-dom";
+import { SessionContext } from "./SessionContext";
 
 function ContactList() {
   const [list, setList] = useState([]);
-
-  //   console.log(supabase);
-  //   console.log(list);
+  const { setSession } = useContext(SessionContext);
 
   useEffect(() => {
-    console.log("useEffect called");
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session) {
+        setSession(session);
+      }
+    };
+
+    getSession();
+  }, []);
+
+  useEffect(() => {
     async function fetchContacts() {
       const { data, error } = await supabase
         .from("contacts")
