@@ -98,7 +98,9 @@ function Login() {
         <Link to="/sign-up">Sign-up</Link>
       </small> */}
 
-      <h1>Sign-in to Contacts App ✅</h1>
+      <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+
+      <h1 className="h1--login">Sign-in to Contacts App ✅</h1>
       {/*
       FORM CONSIDERANDO EMAIL + SENHA
        <form>
@@ -127,14 +129,16 @@ function Login() {
       <br />
       <form onSubmit={signInWithEmail}>
         <input
+          className="input"
           type="text"
           id="email"
           name="email"
+          placeholder="Your email"
           onChange={(event) => handleChange(event)}
           value={user.email}
         />
         <br />
-        <button>Login with magic link ✨</button>
+        <button className="button">Login with magic link ✨</button>
       </form>
       <p>{formError}</p>
     </div>
