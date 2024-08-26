@@ -64,6 +64,30 @@ ion-icon {
   align-self: start;
 }
 
+.confirmation {
+  display: grid;
+  grid-template-columns: 350px;
+  grid-template-rows: 200px;
+  grid-auto-rows: 50px;
+  row-gap: 10px;
+  justify-items: center;
+  align-items: center;
+}
+
+.confirmation--img {
+  width: 160px;
+}
+
+.confirmation--h1 {
+  font-size: 26px;
+}
+
+.confirmation--p {
+  font-size: 14px;
+  color: darkslategrey;
+  justify-self: center;
+}
+
 .card--img {
   height: 50px;
   width: 50px;
