@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactCard({ contact, handleDelete }) {
   return (
-    <div>
+    <div className="list-card">
       <img src={contact.profile_url} className="card--img" />
       <p>{contact.name}</p>
       <small>{contact.phone_number}</small>

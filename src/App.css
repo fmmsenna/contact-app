@@ -88,6 +88,16 @@ ion-icon {
   justify-self: center;
 }
 
+.contact-list {
+  border: 1px solid orange;
+  display: grid;
+}
+
+.list-card {
+  display: grid;
+  border: 1px solid red;
+}
+
 .card--img {
   height: 50px;
   width: 50px;
