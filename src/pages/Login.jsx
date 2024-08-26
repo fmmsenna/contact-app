@@ -5,7 +5,7 @@ import { SessionContext } from "../components/SessionContext";
 
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
-  const [formError, setFormError] = useState(null);
+  const [formError, setFormError] = useState(false);
   const { setSession } = useContext(SessionContext);
 
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ function Login() {
     e.preventDefault();
 
     if (!user.email) {
-      setFormError("Preencha um email válido, no formato seunome@email.com");
+      setFormError((prevState) => !prevState);
       return;
     }
 
@@ -82,7 +82,7 @@ function Login() {
       },
     });
     if (error) {
-      setFormError("Preencha um email válido, no formato seunome@email.com");
+      setFormError((prevState) => !prevState);
       return;
     }
     if (data) {
@@ -91,16 +91,13 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className="container">
       {/* 
         REDIRECT PARA SIGN-UP USANDO EMAIL + SENHA
       <small>
         <Link to="/sign-up">Sign-up</Link>
       </small> */}
 
-      <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-
-      <h1 className="h1--login">Sign-in to Contacts App ✅</h1>
       {/*
       FORM CONSIDERANDO EMAIL + SENHA
        <form>
@@ -127,7 +124,9 @@ function Login() {
         <button>Login</button>
       </form> */}
       <br />
-      <form onSubmit={signInWithEmail}>
+      <form className="form--login" onSubmit={signInWithEmail}>
+        <ion-icon name="mail" aria-hidden="true"></ion-icon>
+        <h1 className="h1--login">Log in to ContactsApp</h1>
         <input
           className="input"
           type="text"
@@ -137,10 +136,11 @@ function Login() {
           onChange={(event) => handleChange(event)}
           value={user.email}
         />
-        <br />
-        <button className="button">Login with magic link ✨</button>
+        <button className="button">Log In with magic link ✨</button>
+        <p className="error-msg">
+          {formError && "⚠️ Fill in an email like: yourname@email.com"}
+        </p>
       </form>
-      <p>{formError}</p>
     </div>
   );
 }

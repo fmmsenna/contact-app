@@ -3,20 +3,65 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
+  background-color: white;
+}
+
+.container {
+  border: 1px solid black;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.form--login {
+  display: grid;
+  grid-template-columns: 350px;
+  grid-template-rows: repeat(2, 32px) 24px 100px;
+  row-gap: 30px;
+  justify-items: center;
+  align-items: center;
+  padding: 20px;
 }
 
 ion-icon {
   font-size: 32px;
-  background-color: #f88379;
+  background-color: #ffa599;
+  padding: 10px;
 }
 
 .h1--login {
+  font-size: 28px;
 }
 
 .input {
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 1px 0 0 #f1f1f1;
+  width: 100%;
+  padding-top: 30px;
+}
+
+.input:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 1px 0 0 #ffa599;
 }
 
 .button {
+  border: none;
+  border-radius: 5px;
+  background-color: #d66559;
+  color: white;
+  padding: 10px;
+  align-self: end;
+  cursor: pointer;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: darkslategray;
+  align-self: start;
 }
 
 .card--img {
