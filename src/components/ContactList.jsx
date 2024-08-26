@@ -67,27 +67,29 @@ function ContactList() {
   }
 
   return (
-    <div className="container">
-      <div className="contact-list">
-        <h2>ContactList</h2>
+    <div className="contact-list">
+      <div className="list-header">
+        <h2 className="list-title">👇 Your contacts</h2>
         <Link to="/edit">
-          <button>New + </button>
+          <button className="list-newBtn">New + </button>
         </Link>
         <Link to="/">
-          <button onClick={signOut}>Sign-out</button>
+          <button onClick={signOut} className="list-signOutBtn">
+            Sign-out
+          </button>
         </Link>
-        {list && (
-          <div className="contact-card">
-            {list.map((contact) => (
-              <ContactCard
-                key={contact.contact_id}
-                contact={contact}
-                handleDelete={handleDelete}
-              />
-            ))}
-          </div>
-        )}
       </div>
+      {list && (
+        <div className="contact-card">
+          {list.map((contact) => (
+            <ContactCard
+              key={contact.contact_id}
+              contact={contact}
+              handleDelete={handleDelete}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

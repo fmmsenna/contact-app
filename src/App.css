@@ -89,16 +89,77 @@ ion-icon {
 }
 
 .contact-list {
-  border: 1px solid orange;
+  margin-top: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.list-title {
+  flex: 1;
+  font-size: 28px;
+}
+
+.list-newBtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #d66559;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.list-signOutBtn {
+  border: none;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.contact-card {
   display: grid;
+  grid-gap: 10px;
 }
 
 .list-card {
-  display: grid;
-  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 0 0 #f1f1f1;
+  padding-bottom: 10px;
 }
 
 .card--img {
-  height: 50px;
-  width: 50px;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
+.card--name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.card--number {
+  color: darkslategrey;
+  font-size: 12px;
+}
+
+.card--removebtn {
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: black;
+  cursor: pointer;
+  margin-left: auto;
+  padding: 10px;
+  font-weight: bold;
 }
