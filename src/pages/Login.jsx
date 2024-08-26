@@ -138,7 +138,7 @@ function Login() {
           placeholder="Your email"
           onChange={(event) => handleChange(event)}
           value={user.email}
-          autocomplete="off"
+          autoComplete="off"
         />
         <button className="button">Log In with magic link ✨</button>
         <p className="error-msg">
