@@ -1,29 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import ContactCard from "./ContactCard";
 import supabase from "../supabase";
 import { Link, useNavigate } from "react-router-dom";
-import { SessionContext } from "./SessionContext";
 
 function ContactList() {
   const [list, setList] = useState([]);
-  const { setSession } = useContext(SessionContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const getSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-
-      if (session) {
-        setSession(session);
-      } else {
-        navigate("/");
-      }
-    };
-
-    getSession();
-  }, []);
 
   useEffect(() => {
     async function fetchContacts() {

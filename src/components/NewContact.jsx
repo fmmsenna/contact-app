@@ -1,10 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import supabase from "../supabase";
 import { SessionContext } from "./SessionContext";
 
 function NewContact() {
-  const { session, setSession } = useContext(SessionContext);
+  const { session } = useContext(SessionContext);
 
   const navigate = useNavigate();
 
@@ -15,19 +15,6 @@ function NewContact() {
     contact_id: "",
   });
   const [formError, setFormError] = useState(false);
-
-  useEffect(() => {
-    const getSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      if (session) {
-        setSession(session);
-      }
-    };
-
-    getSession();
-  }, []);
 
   function handleInputChange(event) {
     setFormError(false);
@@ -101,10 +88,10 @@ function NewContact() {
         onChange={(event) => handleInputChange(event)}
       />
       <br />
-      <button>Submit</button>
-      <Link to="/">
-        <button>Cancelar</button>
-      </Link>
+      <button type="submit">Submit</button>
+      <button type="button" onClick={() => navigate("/contact-list")}>
+        Cancelar
+      </button>
 
       {formError && <p>Please fill in all fields!</p>}
     </form>
