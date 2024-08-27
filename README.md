@@ -34,15 +34,15 @@ I'm not reinventing the wheel here...
 <div>
 But what I actually think that brought most value was to:
 <ul>
-    <li>Building something from scratch by myself</li>
-    <li>Using map, spread operator & others</li>
-    <li>Managing States & Context</li>
-    <li>Setting up React forms</li>
-    <li>Dealing with calls from the database with useEffect</li>
-    <li>Setting up RLS, using & communicating real-time with a database</li>
-    <li>Managing authentication & user permissions</li>
-    <li>Implementing routing & navigation</li>
-    <li>Creating responsive styling</li>
+    <li>Build something from scratch by myself</li>
+    <li>Use map, spread operator & others</li>
+    <li>Manage States & Context</li>
+    <li>Set up React forms</li>
+    <li>Deal with calls from the database with useEffect</li>
+    <li>Set up RLS, using & communicating real-time with a database</li>
+    <li>Manage authentication & user permissions</li>
+    <li>Implement routing & navigation</li>
+    <li>Create responsive styling</li>
 </ul>
 </div>
 
