@@ -41,7 +41,7 @@ function Login() {
     }));
   }
 
-  //FUNÇÃO CONSIDERANDO LOGIN COM EMAIL + SENHA
+  //FUNCTION TO ADD LOGIN WITH EMAIL + PASSWORD
   /*
   async function signInWithEmail(e) {
     e.preventDefault();
@@ -96,7 +96,7 @@ function Login() {
   return (
     <div className="container">
       {/* 
-        REDIRECT PARA SIGN-UP USANDO EMAIL + SENHA
+        REDIRECT TO SIGN-UP USING EMAIL + PASSWORD
       <small>
         <Link to="/sign-up">Sign-up</Link>
       </small> */}
