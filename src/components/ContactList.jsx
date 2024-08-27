@@ -52,11 +52,9 @@ function ContactList() {
     <div className="contact-list">
       <div className="list-header">
         <h2 className="list-title">👇 Your contacts</h2>
-        {/* <Link to="/edit"> */}
         <button className="list-newBtn" onClick={() => navigate("/edit")}>
-          New +{" "}
+          New +
         </button>
-        {/* </Link> */}
         <Link to="/">
           <button onClick={signOut} className="list-signOutBtn">
             Sign-out
