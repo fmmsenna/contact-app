@@ -16,7 +16,7 @@
 <h2>🧰 Built with</h2>
 <ul>
     <li>App in React</li>
-    <li>Data persisted in Supabase</li>
+    <li>Auth & Data persisted in Supabase</li>
     <li>Navigation with React Router</li>
     <li>Hosted on Vercel</li>
     <li>Styling with CSS</li>
@@ -38,8 +38,8 @@ But what I actually think that brought most value was to:
     <li>Use map, spread operator & others</li>
     <li>Manage States & Context</li>
     <li>Set up React forms</li>
-    <li>Deal with calls from the database with useEffect</li>
-    <li>Set up RLS, using & communicating real-time with a database</li>
+    <li>Deal with API calls to Supabase with useEffect</li>
+    <li>Set up row-level-security, using & communicating real-time with a database</li>
     <li>Manage authentication & user permissions</li>
     <li>Implement routing & navigation</li>
     <li>Create responsive styling</li>
@@ -54,6 +54,7 @@ This got interesting and, as a beginner, I totally acknowledge that there are th
     <li>Add option to update contact</li>
     <li>Improve app structure between pages vs components</li>
     <li>Add more properties for each contact</li>
+    <li>Upload profile picture</li>
 </ul>
 
 <h2>💬 Feedbacks welcome</h2>
