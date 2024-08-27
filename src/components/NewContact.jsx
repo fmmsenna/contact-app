@@ -55,46 +55,67 @@ function NewContact() {
   }
 
   return (
-    <form onSubmit={handleSubmitSupabase}>
-      <h1>New Contact</h1>
-      <label htmlFor="name">Name</label>
-      <br />
-      <input
-        id="name"
-        type="text"
-        name="name"
-        value={contact.name}
-        onChange={(event) => handleInputChange(event)}
-      />
-      <br />
-      <label htmlFor="phone-input">Phone number</label>
-      <br />
-      <input
-        id="phone-input"
-        placeholder="(  )    -    "
-        type="number"
-        name="phone_number"
-        value={contact.phone_number}
-        onChange={(event) => handleInputChange(event)}
-      />
-      <br />
-      <label htmlFor="url">Profile picture</label>
-      <br />
-      <input
-        id="url"
-        type="text"
-        name="profile_url"
-        value={contact.profile_url}
-        onChange={(event) => handleInputChange(event)}
-      />
-      <br />
-      <button type="submit">Submit</button>
-      <button type="button" onClick={() => navigate("/contact-list")}>
-        Cancelar
-      </button>
+    <div className="newContact--container">
+      <form className="form--addNewContact" onSubmit={handleSubmitSupabase}>
+        <h1 className="h1--login">New Contact</h1>
+        <div className="inputWrap--addContact">
+          <div className="input--element">
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder=""
+              autoComplete="off"
+              value={contact.name}
+              onChange={(event) => handleInputChange(event)}
+            />
+            <div className="label">
+              <label htmlFor="name">Name</label>
+            </div>
+          </div>
+          <div className="input--element">
+            <input
+              id="phone-input"
+              placeholder="(  )    -    "
+              type="number"
+              name="phone_number"
+              autoComplete="off"
+              value={contact.phone_number}
+              onChange={(event) => handleInputChange(event)}
+            />
+            <div className="label">
+              <label htmlFor="phone-input">Phone number</label>
+            </div>
+          </div>
+          <div className="input--element">
+            <input
+              id="url"
+              type="text"
+              name="profile_url"
+              placeholder=""
+              autoComplete="off"
+              value={contact.profile_url}
+              onChange={(event) => handleInputChange(event)}
+            />
+            <div className="label">
+              <label htmlFor="url">Profile picture</label>
+            </div>
+          </div>
+          <button className="list-newBtn" type="submit">
+            Submit
+          </button>
+          <button
+            className="cancel-btn"
+            type="button"
+            onClick={() => navigate("/contact-list")}
+          >
+            Cancelar
+          </button>
 
-      {formError && <p>Please fill in all fields!</p>}
-    </form>
+          {formError && <p>Please fill in all fields!</p>}
+        </div>
+      </form>
+    </div>
   );
 }
 

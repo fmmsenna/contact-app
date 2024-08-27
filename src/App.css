@@ -40,6 +40,7 @@ ion-icon {
   box-shadow: 0 1px 0 0 #f1f1f1;
   width: 100%;
   padding-top: 30px;
+  transition: 300ms ease;
 }
 
 .input:focus {
@@ -162,4 +163,87 @@ ion-icon {
   margin-left: auto;
   padding: 10px;
   font-weight: bold;
+}
+
+.newContact--container {
+  height: 100vh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+}
+
+.form--addNewContact {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  width: 100%;
+  align-self: center;
+}
+
+.inputWrap--addContact {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 48px;
+  margin-top: 50px;
+}
+
+.input--element {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.input--element input {
+  width: 100%;
+  border: none;
+  box-shadow: 0 1px 0 0 #f1f1f1;
+  padding: 8px 0;
+  font-size: 14px;
+  transition: 300ms ease;
+}
+
+.input--element input:focus {
+  outline: none;
+  border: none;
+  box-shadow: 0 1px 0 0 #ffa599;
+}
+
+.input--element input::-webkit-outer-spin-button,
+.input--element input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.label {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: 300ms ease;
+}
+
+.label label {
+  display: block;
+  font-size: 14px;
+  color: #b0b0b0;
+}
+
+.input--element input:focus + .label,
+.input--element input:not(:placeholder-shown) + .label {
+  transform: translateY(-27px);
+}
+
+.input--element input:focus + .label label {
+  font-weight: 500;
+  color: black;
+}
+
+.cancel-btn {
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: black;
+  padding: 10px;
+  cursor: pointer;
 }
