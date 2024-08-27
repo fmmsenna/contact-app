@@ -17,12 +17,12 @@ import ConfirmLogin from "./pages/ConfirmLogin";
 const appRouter = createBrowserRouter(
   createRoutesFromElements(
     <>
+      <Route path="/" element={<Login />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/check-email" element={<ConfirmLogin />} />
       <Route path="/contact-list" element={<ContactList />} />
       <Route path="/edit" element={<NewContact />} />
-      <Route path="/" element={<Login />} />
     </>
   )
 );
