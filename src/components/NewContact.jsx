@@ -101,11 +101,11 @@ function NewContact() {
               <label htmlFor="url">Profile picture</label>
             </div>
           </div>
-          <button className="list-newBtn" type="submit">
+          <button className="list-newBtn main-btn" type="submit">
             Submit
           </button>
           <button
-            className="cancel-btn"
+            className="cancel-btn off-btn"
             type="button"
             onClick={() => navigate("/contact-list")}
           >

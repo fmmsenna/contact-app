@@ -8,7 +8,7 @@ function ContactCard({ contact, handleDelete }) {
       <p className="card--number"> | {contact.phone_number}</p>
       <button
         onClick={() => handleDelete(contact.contact_id)}
-        className="card--removebtn"
+        className="card--removebtn off-btn"
       >
         ❌
       </button>

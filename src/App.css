@@ -14,6 +14,20 @@
   align-content: center;
 }
 
+.main-btn:hover {
+  cursor: pointer;
+  background-color: #f1f1f1;
+  color: #d66559;
+  font-weight: bold;
+}
+
+.off-btn:hover {
+  cursor: pointer;
+  background-color: #b0b0b0;
+  color: white;
+  font-weight: bold;
+}
+
 .form--login {
   display: grid;
   grid-template-columns: 350px;
@@ -56,7 +70,6 @@ ion-icon {
   color: white;
   padding: 10px;
   align-self: end;
-  cursor: pointer;
 }
 
 .error-msg {
@@ -113,7 +126,6 @@ ion-icon {
   background-color: #d66559;
   color: white;
   padding: 10px;
-  cursor: pointer;
 }
 
 .list-signOutBtn {
@@ -122,7 +134,6 @@ ion-icon {
   background-color: black;
   color: white;
   padding: 10px;
-  cursor: pointer;
 }
 
 .contact-card {

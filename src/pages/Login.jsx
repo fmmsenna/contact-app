@@ -140,7 +140,7 @@ function Login() {
           value={user.email}
           autoComplete="off"
         />
-        <button className="button">Log In with magic link ✨</button>
+        <button className="button main-btn">Log In with magic link ✨</button>
         <p className="error-msg">
           {formError && "⚠️ Fill in an email like: yourname@email.com"}
         </p>
