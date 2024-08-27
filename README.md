@@ -9,7 +9,7 @@
 <h2>🧭 Some context</h2>
 <p>I'm a 2x founder that led Product and Growth strategies and teams from scratch to 40+ people and US$20+ million in revenue with an exit to a public-traded company.</p>
 <p>As a seasoned tech entrepreneur with an engineering (not tech) background, I've always thought of learning to code as a way of becoming a better founder & tech leader. </p>
-<p>In July/24, I decided to go for it and have been learning on my own, through resources like Codecademy & Scrimba, and counting with the -incredible- mentorship of my previous Tech Lead.</p>
+<p>In July/24, I decided to go for it and have been learning on my own, through resources like Codecademy & Scrimba, and counting with the -incredible- mentorship of my previous Tech Lead. <small>[shout out and much love 💜 to @vinimdocarmo]</small></p> 
 <p>This is my first portfolio-grade project and although I'm sure there's a lot of things to improve, I'm also very happy with the result and looking forward to keep learning.</p>
 <p>Let's go build something great! 🤘</p>
 
