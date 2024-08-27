@@ -109,10 +109,11 @@ function NewContact() {
             type="button"
             onClick={() => navigate("/contact-list")}
           >
-            Cancelar
+            Cancel
           </button>
-
-          {formError && <p>Please fill in all fields!</p>}
+          <p className="error-msg">
+            {formError && "⚠️ Please fill in all fields!"}
+          </p>
         </div>
       </form>
     </div>
