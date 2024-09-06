@@ -260,3 +260,10 @@ ion-icon {
   padding: 10px;
   transition: 300ms ease;
 }
+
+.felippe {
+  font-weight: bold;
+  background-color: black;
+  color: purple;
+  border: 1px solid red;
+}
