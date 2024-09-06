@@ -9,14 +9,14 @@
 <h2>🧭 Some context</h2>
 <p>I'm a 2x founder that led Product and Growth strategies and teams from scratch to 40+ people and US$20+ million in revenue with an exit to a public-traded company.</p>
 <p>As a seasoned tech entrepreneur with an engineering (not tech) background, I've always thought of learning to code as a way of becoming a better founder & tech leader. </p>
-<p>In July/24, I decided to go for it and have been learning on my own, through resources like Codecademy & Scrimba, and counting with the -incredible- mentorship of my previous Tech Lead. <br/><small>[shout out and much love 💜 to @vinimdocarmo]</small></p> 
+<p>In July/24, I decided to go for it and have been learning on my own, through resources like Codecademy & Scrimba, and counting with the -incredible- mentorship of my former Tech Lead. <br/><small>[shout out and much love 💜 to @vinimdocarmo]</small></p> 
 <p>This is my first portfolio-grade project and although I'm sure there's a lot of things to improve, I'm also very happy with the result and looking forward to keep learning.</p>
 <p>Let's go build something great! 🤘</p>
 
 <h2>🧰 Built with</h2>
 <ul>
     <li>App in React</li>
-    <li>Data persisted in Supabase</li>
+    <li>Auth & Data persisted in Supabase</li>
     <li>Navigation with React Router</li>
     <li>Hosted on Vercel</li>
     <li>Styling with CSS</li>
@@ -34,15 +34,15 @@ I'm not reinventing the wheel here...
 <div>
 But what I actually think that brought most value was to:
 <ul>
-    <li>Building something from scratch by myself</li>
-    <li>Using map, spread operator & others</li>
-    <li>Managing States & Context</li>
-    <li>Setting up React forms</li>
-    <li>Dealing with calls from the database with useEffect</li>
-    <li>Setting up RLS, using & communicating real-time with a database</li>
-    <li>Managing authentication & user permissions</li>
-    <li>Implementing routing & navigation</li>
-    <li>Creating responsive styling</li>
+    <li>Build something from scratch by myself</li>
+    <li>Use map, spread operator & others</li>
+    <li>Manage States & Context</li>
+    <li>Set up React forms</li>
+    <li>Deal with API calls to Supabase with useEffect</li>
+    <li>Set up row-level-security, using & communicating real-time with a database</li>
+    <li>Manage authentication & user permissions</li>
+    <li>Implement routing & navigation</li>
+    <li>Create responsive styling</li>
 </ul>
 </div>
 
@@ -54,6 +54,7 @@ This got interesting and, as a beginner, I totally acknowledge that there are th
     <li>Add option to update contact</li>
     <li>Improve app structure between pages vs components</li>
     <li>Add more properties for each contact</li>
+    <li>Upload profile picture</li>
 </ul>
 
 <h2>💬 Feedbacks welcome</h2>
