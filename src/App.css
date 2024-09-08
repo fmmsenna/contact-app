@@ -260,9 +260,3 @@ ion-icon {
   padding: 10px;
   transition: 300ms ease;
 }
-
-.family {
-  border: red;
-  color: blue;
-  font-size: 60px;
-}
