@@ -37,7 +37,7 @@
   padding: 20px;
 }
 
-ion-icon {
+.login-icon {
   font-size: 32px;
   background-color: #ffa599;
   padding: 10px;
@@ -175,6 +175,19 @@ button:disabled {
 .card--number {
   color: darkslategrey;
   font-size: 12px;
+}
+
+.card--edit-btn {
+  border: none;
+  border-radius: 5px;
+  color: black;
+  font-weight: bold;
+  transition: 300ms ease;
+  cursor: pointer;
+}
+
+.update-icon {
+  color: black;
 }
 
 .card--removebtn {

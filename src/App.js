@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import ResetPassword from "./pages/ResetPassword";
 import ConfirmLogin from "./pages/ConfirmLogin";
+import UpdateContact from "./pages/UpdateContact";
 import AuthGuard from "./components/AuthGuard";
 
 const appRouter = createBrowserRouter(
@@ -22,6 +23,7 @@ const appRouter = createBrowserRouter(
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/contact-list" element={<ContactList />} />
         <Route path="/edit" element={<NewContact />} />
+        <Route path="/:id" element={<UpdateContact />} />
       </Route>
 
       <Route path="/" element={<Login />} />
