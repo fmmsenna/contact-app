@@ -70,6 +70,16 @@ ion-icon {
   padding: 10px;
   align-self: end;
   transition: 300ms ease;
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+button:disabled {
+  cursor: none !important;
+  background-color: #f1f1f1;
+  color: #d66559;
+  font-weight: bold;
 }
 
 .error-msg {

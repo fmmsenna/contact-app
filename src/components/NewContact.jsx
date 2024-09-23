@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../supabase";
 import { SessionContext } from "./SessionContext";
@@ -15,6 +15,7 @@ function NewContact() {
     contact_id: "",
   });
   const [formError, setFormError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleInputChange(event) {
     setFormError(false);
@@ -31,6 +32,8 @@ function NewContact() {
       setFormError((prevState) => !prevState);
       return;
     }
+
+    setIsLoading((prevState) => !prevState);
 
     const { data, error } = await supabase
       .from("contacts")
@@ -52,6 +55,8 @@ function NewContact() {
       setFormError(false);
       navigate("/contact-list");
     }
+
+    setIsLoading((prevState) => !prevState);
   }
 
   return (
@@ -101,8 +106,12 @@ function NewContact() {
               <label htmlFor="url">Profile picture</label>
             </div>
           </div>
-          <button className="list-newBtn main-btn" type="submit">
-            Submit
+          <button
+            className="list-newBtn main-btn"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Adding..." : "Submit"}
           </button>
           <button
             className="cancel-btn off-btn"

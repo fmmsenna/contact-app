@@ -6,6 +6,7 @@ import { SessionContext } from "../components/SessionContext";
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
   const [formError, setFormError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { setSession } = useContext(SessionContext);
 
   const navigate = useNavigate();
@@ -78,6 +79,8 @@ function Login() {
       return;
     }
 
+    setIsLoading((prevState) => !prevState);
+
     const { data, error } = await supabase.auth.signInWithOtp({
       email: user.email,
       options: {
@@ -91,18 +94,48 @@ function Login() {
     if (data) {
       navigate("/check-email");
     }
+    setIsLoading((prevState) => !prevState);
   }
 
   return (
     <div className="container">
-      {/* 
+      <form className="form--login" onSubmit={signInWithEmail}>
+        <ion-icon name="mail" aria-hidden="true"></ion-icon>
+        <h1 className="h1--login">Log in to ContactsApp</h1>
+        <input
+          className="input"
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Your email"
+          onChange={(event) => handleChange(event)}
+          value={user.email}
+          autoComplete="off"
+        />
+        <button className="button main-btn" disabled={isLoading}>
+          {isLoading ? "Loading..." : "Log In with magic link ✨"}
+        </button>
+        <p className="error-msg">
+          {formError && "⚠️ Fill in an email like: yourname@email.com"}
+        </p>
+      </form>
+    </div>
+  );
+}
+
+export default Login;
+
+{
+  /* 
         REDIRECT TO SIGN-UP USING EMAIL + PASSWORD
       <small>
         <Link to="/sign-up">Sign-up</Link>
-      </small> */}
+      </small> */
+}
 
-      {/*
-      FORM CONSIDERANDO EMAIL + SENHA
+{
+  /*
+      FORM CONSIDERING EMAIL + PASSWORD
        <form>
         <label htmlFor="email">Your email</label>
         <br />
@@ -125,28 +158,5 @@ function Login() {
         />
         <br />
         <button>Login</button>
-      </form> */}
-      <br />
-      <form className="form--login" onSubmit={signInWithEmail}>
-        <ion-icon name="mail" aria-hidden="true"></ion-icon>
-        <h1 className="h1--login">Log in to ContactsApp</h1>
-        <input
-          className="input"
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Your email"
-          onChange={(event) => handleChange(event)}
-          value={user.email}
-          autoComplete="off"
-        />
-        <button className="button main-btn">Log In with magic link ✨</button>
-        <p className="error-msg">
-          {formError && "⚠️ Fill in an email like: yourname@email.com"}
-        </p>
-      </form>
-    </div>
-  );
+      </form> */
 }
-
-export default Login;
