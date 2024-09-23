@@ -283,3 +283,12 @@ button:disabled {
   padding: 10px;
   transition: 300ms ease;
 }
+
+.ai-contact {
+  margin-top: 10px;
+  text-decoration: underline;
+  color: darkslategrey;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}

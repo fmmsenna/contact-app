@@ -49,7 +49,6 @@ function UpdateContact() {
       setFormError((prevState) => !prevState);
       return;
     }
-    console.log(contact);
 
     setIsLoading((prevState) => !prevState);
 
