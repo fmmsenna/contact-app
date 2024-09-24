@@ -60,7 +60,7 @@ function NewContact() {
     setIsLoading((prevState) => !prevState);
   }
 
-  //Using Fetch with GROQ Api
+  //Using Fetch with GROQ API
   async function handleGenerateWithAi() {
     const groqUrl = "https://api.groq.com/openai/v1/chat/completions";
 
@@ -78,8 +78,7 @@ function NewContact() {
             content: `You are an assistant that generates the following information: 
             1- a name + last name: using characters from real sitcom series Friends, How I Met Your Mother, Suits, Billions or The Office. You choose, but it has to be real, don't invent;
             2- a random brazilian phone number in this format xx9xxxxxxxx - DO not use spaces;
-            3- a profile picture url from a random giphy https://giphy.com/. You must triple-check if the URL is actually providing a real image.
-            Return the result in JSON format like this: {"name": "", "phone_number": "", "profile_url": ""}
+            Return the result in JSON format like this: {"name": "", "phone_number": ""}
             `,
           },
         ],
@@ -88,49 +87,29 @@ function NewContact() {
 
     const data = await response.json();
     const content = data.choices[0].message.content;
-
     const jsonMatch = content.match(/\{[\s\S]*\}/);
     const jsonString = jsonMatch[0];
     const result = JSON.parse(jsonString);
 
+    //Getting the image from Giphy
+    const giphyUrl = "https://api.giphy.com/v1/gifs/search";
+    const giphyAPIKey = process.env.REACT_APP_GIPHY_API_KEY;
+    const params = new URLSearchParams({
+      api_key: giphyAPIKey,
+      q: result.name,
+      limit: 1,
+    });
+
+    const gf = await fetch(`${giphyUrl}?${params.toString()}`);
+    const gfData = await gf.json();
+    const giphyResponseUrl = gfData.data[0].images.original.url;
+
     setContact((prevContact) => ({
       ...prevContact,
       name: result.name,
       phone_number: result.phone_number,
-      profile_url: result.profile_url,
+      profile_url: giphyResponseUrl,
     }));
-
-    /* 
-    Using GRONQ SDK 
-    const groq = new Groq({
-      apiKey: process.env.REACT_APP_GROQ_API_KEY,
-      dangerouslyAllowBrowser: true,
-    });
-
-    const chatCompletion = await groq.chat.completions.create({
-      messages: [
-        {
-          role: "user",
-          content: `You are an assistant that generates the following information: 
-            1- a name + last name: using characters from real sitcom series Friends, How I Met Your Mother, Suits, Billions or The Office. You choose, but it has to be real, don't invent;
-            2- a random brazilian phone number in this format xx9xxxxxxxx - DO not use spaces;
-            3- a profile picture url from a random giphy https://giphy.com/. You must triple-check if the URL is actually providing a real image.
-            Return the result in JSON format like this: \"name\": \"\", \"phone_number\": \"\", \"profile_url\": \"\"
-            `,
-        },
-      ],
-      model: "llama3-8b-8192",
-      response_format: { type: "json_object" },
-    });
-    const data = chatCompletion.choices[0]?.message?.content || "";
-    const result = JSON.parse(data);
-    setContact((prevContact) => ({
-      ...prevContact,
-      name: result.name,
-      phone_number: result.phone_number,
-      profile_url: result.profile_url,
-    }));
-    */
   }
 
   return (
@@ -210,3 +189,35 @@ function NewContact() {
 }
 
 export default NewContact;
+
+/* 
+    Using GRONQ AI API via SDK 
+    const groq = new Groq({
+      apiKey: process.env.REACT_APP_GROQ_API_KEY,
+      dangerouslyAllowBrowser: true,
+    });
+
+    const chatCompletion = await groq.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content: `You are an assistant that generates the following information: 
+            1- a name + last name: using characters from real sitcom series Friends, How I Met Your Mother, Suits, Billions or The Office. You choose, but it has to be real, don't invent;
+            2- a random brazilian phone number in this format xx9xxxxxxxx - DO not use spaces;
+            3- a profile picture url from a random giphy https://giphy.com/. You must triple-check if the URL is actually providing a real image.
+            Return the result in JSON format like this: \"name\": \"\", \"phone_number\": \"\", \"profile_url\": \"\"
+            `,
+        },
+      ],
+      model: "llama3-8b-8192",
+      response_format: { type: "json_object" },
+    });
+    const data = chatCompletion.choices[0]?.message?.content || "";
+    const result = JSON.parse(data);
+    setContact((prevContact) => ({
+      ...prevContact,
+      name: result.name,
+      phone_number: result.phone_number,
+      profile_url: result.profile_url,
+    }));
+    */
