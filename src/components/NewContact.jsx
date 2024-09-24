@@ -85,7 +85,6 @@ function NewContact() {
       }),
     });
 
-    console.log(process.env.REACT_APP_GROQ_API_KEY);
     const data = await response.json();
     const content = data.choices[0].message.content;
     const jsonMatch = content.match(/\{[\s\S]*\}/);
