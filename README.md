@@ -20,6 +20,7 @@
     <li>Navigation with React Router</li>
     <li>Hosted on Vercel</li>
     <li>Styling with CSS</li>
+    <li>AI with GROQ</li>
 </ul>
 
 <h2>✅ Features</h2>
@@ -28,7 +29,9 @@ I'm not reinventing the wheel here...
     <li>Sign-in via Magic Link</li>
     <li>See real-time contact list by alphabetical order</li>
     <li>Add new contacts with name, phone and profile img</li>
+    <li>Update an existing contact</li>
     <li>Remove contact</li>
+    <li>Generate a new contact with AI</li>
 </ul>
 
 <div>
@@ -42,6 +45,7 @@ But what I actually think that brought most value was to:
     <li>Set up row-level-security, using & communicating real-time with a database</li>
     <li>Manage authentication & user permissions</li>
     <li>Implement routing & navigation</li>
+    <li>Playing with AI with GROQ api</li>
     <li>Create responsive styling</li>
 </ul>
 </div>
@@ -49,9 +53,7 @@ But what I actually think that brought most value was to:
 <h2>🔮 Next features to implement</h2>
 This got interesting and, as a beginner, I totally acknowledge that there are things to improve. A few of those include: 
 <ul>
-    <li>Add loading states</li>
     <li>Allow to sign-up with email+password or via gmail</li>
-    <li>Add option to update contact</li>
     <li>Improve app structure between pages vs components</li>
     <li>Add more properties for each contact</li>
     <li>Upload profile picture</li>
