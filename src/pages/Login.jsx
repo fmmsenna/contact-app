@@ -100,11 +100,9 @@ function Login() {
   return (
     <div className="container">
       <form className="form--login" onSubmit={signInWithEmail}>
-        <ion-icon
-          className="login-icon"
-          name="mail"
-          aria-hidden="true"
-        ></ion-icon>
+        <span className="login-icon">
+          <ion-icon name="mail" aria-hidden="true"></ion-icon>
+        </span>
         <h1 className="h1--login">Log in to ContactsApp</h1>
         <input
           className="input"

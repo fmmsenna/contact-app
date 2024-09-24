@@ -41,6 +41,12 @@
   font-size: 32px;
   background-color: #ffa599;
   padding: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.login-icon ion-icon {
+  background-color: transparent;
 }
 
 .h1--login {
