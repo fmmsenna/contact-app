@@ -7,25 +7,31 @@ const groqUrl = "https://api.groq.com/openai/v1/chat/completions"
 const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, x-client-info, apikey, Authorization",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
   }
 
 
 serve(async (req) => {
   //Handling CORS
+  const origin = req.headers.get('origin');
+
   if (req.method === "OPTIONS") {
-      return new Response(null, {headers: corsHeaders })} 
+    if (origin === "https://contact-app-taupe-sigma.vercel.app") {
+      return new Response(null, { headers: { ...corsHeaders, "Access-Control-Allow-Origin": origin } });
+    } else {
+      return new Response(null, { status: 403, statusText: "Forbidden" });
+    }} 
   
   
   const headers = {
-    ...corsHeaders,  // Add CORS headers to the main response
+    ...corsHeaders, 
+    "Access-Control-Allow-Origin": origin, 
     "Content-Type": "application/json",
   };
 
   //Checking auth
-  const authHeader = req.headers.get('Authorization')
+  const authHeader = req.headers.get('Authorization');
   if (!authHeader) {
     return new Response(JSON.stringify({ error: 'No authorization header' }), {
       status: 401,
