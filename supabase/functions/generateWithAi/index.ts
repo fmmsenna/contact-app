@@ -28,15 +28,15 @@ serve(async (req) => {
 
   //Handling CORS
   if (req.method === "OPTIONS" || req.method === "POST") {
-    if (allowedOrigins.includes(origin)) {
-      return new Response(null, {headers: corsHeaders});
-    } else {
-      return new Response(null, {
-        status: 403,
-        statusText: "Forbidden",
-      });
+      return new Response('ok', { headers: corsHeaders })
     }
-  }
+    // else {
+    //   return new Response(null, {
+    //     status: 403,
+    //     statusText: "Forbidden",
+    //   })};
+    
+
 
   //Checking auth
   const authHeader = req.headers.get('Authorization')
