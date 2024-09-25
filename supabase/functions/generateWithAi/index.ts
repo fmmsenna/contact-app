@@ -10,7 +10,6 @@ const allowedOrigins = ["http://localhost:3000", "http://contact-app-taupe-sigma
 
 console.log("Function started")
 
-// const origin = req.headers.get('origin');
   console.log(origin);
 
   const corsHeaders = {
@@ -23,10 +22,12 @@ console.log("Function started")
 serve(async (req) => {
 
   console.log(`Received ${req.method} request`)
+  const origin = req.headers.get('origin');
+
 
 
   //Handling CORS
-  if (req.method === "OPTIONS") {
+  if (req.method === "OPTIONS" || req.method === "POST") {
     if (allowedOrigins.includes(origin)) {
       return new Response(null, {headers: corsHeaders});
     } else {
