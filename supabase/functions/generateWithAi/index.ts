@@ -13,7 +13,7 @@ console.log("Function started")
   console.log(origin);
 
   const corsHeaders = {
-    "Access-Control-Allow-Origin": "http://contact-app-taupe-sigma.vercel.app",
+    "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, x-client-info, apikey, Authorization",
   }
