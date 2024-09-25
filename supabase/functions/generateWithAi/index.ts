@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import supabase from "../../../src/supabase"
+import supabase from "../../../src/supabase";
 
 const GROQ_API_KEY = Deno.env.get('GROQ_API_KEY')
 const GIPHY_API_KEY = Deno.env.get('GIPHY_API_KEY')
@@ -15,8 +15,12 @@ const corsHeaders = {
 serve(async (req) => {
   //Handling CORS
   const origin = req.headers.get('origin');
+  console.log("Request received from origin:", origin);  // Log the origin
+  console.log("Request method:", req.method);  // Log the method
+
 
   if (req.method === "OPTIONS") {
+    console.log("Handling OPTIONS request");  // Log preflight request
     if (origin === "https://contact-app-taupe-sigma.vercel.app") {
       return new Response(null, { headers: { ...corsHeaders, "Access-Control-Allow-Origin": origin } });
     } else {
@@ -29,6 +33,10 @@ serve(async (req) => {
     "Access-Control-Allow-Origin": origin, 
     "Content-Type": "application/json",
   };
+
+  console.log("Handling main request");  // Log main request
+  console.log("Authorization header:", req.headers.get('Authorization'));  // Log the auth header
+
 
   //Checking auth
   const authHeader = req.headers.get('Authorization');
