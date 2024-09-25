@@ -1,15 +1,22 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
-import supabase from "../../../src/supabase";
+import { createClient } from "https://esm.sh/@supabase/supabase-js"; 
 
 const GROQ_API_KEY = Deno.env.get('GROQ_API_KEY')
 const GIPHY_API_KEY = Deno.env.get('GIPHY_API_KEY')
+
+const supabaseUrl = Deno.env.get("SUPABASE_URL");  
+const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY");
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 const groqUrl = "https://api.groq.com/openai/v1/chat/completions"
 const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
+
 const corsHeaders = {
+  "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
-  }
+};
 
 
 serve(async (req) => {
@@ -20,19 +27,9 @@ serve(async (req) => {
 
 
   if (req.method === "OPTIONS") {
-    console.log("Handling OPTIONS request");  // Log preflight request
-    if (origin === "https://contact-app-taupe-sigma.vercel.app") {
-      return new Response(null, { headers: { ...corsHeaders, "Access-Control-Allow-Origin": origin } });
-    } else {
-      return new Response(null, { status: 403, statusText: "Forbidden" });
-    }} 
+    return new Response(null, { headers: corsHeaders });
+  }
   
-  
-  const headers = {
-    ...corsHeaders, 
-    "Access-Control-Allow-Origin": origin, 
-    "Content-Type": "application/json",
-  };
 
   console.log("Handling main request");  // Log main request
   console.log("Authorization header:", req.headers.get('Authorization'));  // Log the auth header
@@ -43,7 +40,7 @@ serve(async (req) => {
   if (!authHeader) {
     return new Response(JSON.stringify({ error: 'No authorization header' }), {
       status: 401,
-      headers: headers
+      headers: { ...corsHeaders, "Content-Type": "application/json" }
     })
   }
 
@@ -53,7 +50,7 @@ serve(async (req) => {
   if (error || !user) {
     return new Response(JSON.stringify({ error: 'Invalid token' }), {
       status: 401,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { ...corsHeaders, "Content-Type": "application/json" }
     })
   }
 
@@ -106,13 +103,13 @@ serve(async (req) => {
 
     return new Response(JSON.stringify(finalResult), {
       status: 200,
-      headers: headers,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
 
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
-      headers: headers,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
 });
