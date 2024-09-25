@@ -11,31 +11,34 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const groqUrl = "https://api.groq.com/openai/v1/chat/completions"
 const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
-
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
-
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://contact-app-taupe-sigma.vercel.app",
+];
 
 serve(async (req) => {
   //Handling CORS
   const origin = req.headers.get('origin');
-  console.log("Request received from origin:", origin);  // Log the origin
-  console.log("Request method:", req.method);  // Log the method
 
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+  };
+
+  if (!allowedOrigins.includes(origin)) {
+    return new Response(JSON.stringify({ error: "Origin not allowed" }), {
+      status: 403,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
 
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
   
 
-  console.log("Handling main request");  // Log main request
-  console.log("Authorization header:", req.headers.get('Authorization'));  // Log the auth header
-
-
-  //Checking auth
+  //Checking Auth
   const authHeader = req.headers.get('Authorization');
   if (!authHeader) {
     return new Response(JSON.stringify({ error: 'No authorization header' }), {
