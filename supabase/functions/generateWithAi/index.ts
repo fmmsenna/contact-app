@@ -6,7 +6,7 @@ const GIPHY_API_KEY = Deno.env.get('GIPHY_API_KEY')
 const groqUrl = "https://api.groq.com/openai/v1/chat/completions"
 const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
-const allowedOrigins = ["http://localhost:3000", "https://contact-app-taupe-sigma.vercel.app/"];
+const allowedOrigins = ["http://localhost:3000", "https://contact-app-taupe-sigma.vercel.app"];
 
 
 serve(async (req) => {
