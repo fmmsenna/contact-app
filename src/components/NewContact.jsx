@@ -87,10 +87,10 @@ function NewContact() {
         phone_number: result.phone_number,
         profile_url: result.profile_url,
       }));
-      setIsGeneratingWithAi((prevState) => !prevState);
     } catch (error) {
       console.log("Error:", error);
     }
+    setIsGeneratingWithAi((prevState) => !prevState);
   }
 
   return (

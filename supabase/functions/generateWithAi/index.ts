@@ -6,37 +6,18 @@ const GIPHY_API_KEY = Deno.env.get('GIPHY_API_KEY')
 const groqUrl = "https://api.groq.com/openai/v1/chat/completions"
 const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
-const allowedOrigins = ["http://localhost:3000", "http://contact-app-taupe-sigma.vercel.app"];
-
-console.log("Function started")
-
-  console.log(origin);
-
-  const corsHeaders = {
-    "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, x-client-info, apikey, Authorization",
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, x-client-info, apikey, Authorization",
   }
 
 
 serve(async (req) => {
-
-  console.log(`Received ${req.method} request`)
-  const origin = req.headers.get('origin');
-
-
-
   //Handling CORS
-  if (req.method === "OPTIONS" || req.method === "POST") {
-      return new Response('ok', { headers: corsHeaders })
-    }
-    // else {
-    //   return new Response(null, {
-    //     status: 403,
-    //     statusText: "Forbidden",
-    //   })};
-    
-
+  if (req.method === "OPTIONS") {
+      return new Response('ok', {headers: corsHeaders })} 
+  
 
   //Checking auth
   const authHeader = req.headers.get('Authorization')
@@ -58,6 +39,8 @@ serve(async (req) => {
   }
 
   try {
+    console.log('Request headers:', Object.fromEntries(req.headers))
+
     // GROQ API call
     const groqResponse = await fetch(groqUrl, {
       method: "POST",
