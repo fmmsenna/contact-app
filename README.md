@@ -45,8 +45,9 @@ But what I actually think that brought most value was to:
     <li>Set up row-level-security, using & communicating real-time with a database</li>
     <li>Manage authentication & user permissions</li>
     <li>Implement routing & navigation</li>
-    <li>Playing with AI with GROQ api</li>
+    <li>Play with AI with GROQ api</li>
     <li>Create responsive styling</li>
+    <li>Manage API keys with an Edge function</li>
 </ul>
 </div>
 
