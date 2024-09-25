@@ -16,15 +16,20 @@ const corsHeaders = {
 serve(async (req) => {
   //Handling CORS
   if (req.method === "OPTIONS") {
-      return new Response('ok', {headers: corsHeaders })} 
+      return new Response(null, {headers: corsHeaders })} 
   
+  
+  const headers = {
+    ...corsHeaders,  // Add CORS headers to the main response
+    "Content-Type": "application/json",
+  };
 
   //Checking auth
   const authHeader = req.headers.get('Authorization')
   if (!authHeader) {
     return new Response(JSON.stringify({ error: 'No authorization header' }), {
       status: 401,
-      headers: { 'Content-Type': 'application/json' }
+      headers: headers
     })
   }
 
@@ -39,8 +44,6 @@ serve(async (req) => {
   }
 
   try {
-    console.log('Request headers:', Object.fromEntries(req.headers))
-
     // GROQ API call
     const groqResponse = await fetch(groqUrl, {
       method: "POST",
@@ -87,23 +90,15 @@ serve(async (req) => {
       profile_url: giphyResponseUrl
     }
 
-    if (allowedOrigins.includes(origin)) {
-      return new Response(
-        JSON.stringify(finalResult),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    } else {
-      return new Response(null, {
-        status: 403,
-        statusText: "Forbidden",
-      });
-    }
+    return new Response(JSON.stringify(finalResult), {
+      status: 200,
+      headers: headers,
+    });
+
   } catch (error) {
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      {
-        status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" } })
-    
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: headers,
+    });
   }
-})
+});
