@@ -8,21 +8,27 @@ const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
 const allowedOrigins = ["http://localhost:3000", "https://contact-app-taupe-sigma.vercel.app"];
 
+console.log("Function started")
+
+// const origin = req.headers.get('origin');
+  console.log(origin);
+
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, x-client-info, apikey, Authorization",
+  }
+
 
 serve(async (req) => {
 
-  //Handling CORS
-  const origin = req.headers.get('origin');
+  console.log(`Received ${req.method} request`)
 
+
+  //Handling CORS
   if (req.method === "OPTIONS") {
     if (allowedOrigins.includes(origin)) {
-      return new Response(null, {
-        headers: {
-          "Access-Control-Allow-Origin": origin,
-          "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization",
-        },
-      });
+      return new Response(null, {headers: corsHeaders});
     } else {
       return new Response(null, {
         status: 403,
@@ -100,14 +106,7 @@ serve(async (req) => {
     if (allowedOrigins.includes(origin)) {
       return new Response(
         JSON.stringify(finalResult),
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": origin,
-            "Access-Control-Allow-Methods": "POST, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-          },
-        }
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     } else {
       return new Response(null, {
@@ -120,9 +119,7 @@ serve(async (req) => {
       JSON.stringify({ error: error.message }),
       {
         status: 500,
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": origin,}})
+        headers: { ...corsHeaders, "Content-Type": "application/json" } })
     
   }
 })
