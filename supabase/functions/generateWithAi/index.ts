@@ -6,7 +6,7 @@ const GIPHY_API_KEY = Deno.env.get('GIPHY_API_KEY')
 const groqUrl = "https://api.groq.com/openai/v1/chat/completions"
 const giphyUrl = "https://api.giphy.com/v1/gifs/search"
 
-const allowedOrigins = ["http://localhost:3000", "https://contact-app-taupe-sigma.vercel.app"];
+const allowedOrigins = ["http://localhost:3000", "http://contact-app-taupe-sigma.vercel.app"];
 
 console.log("Function started")
 
@@ -14,7 +14,7 @@ console.log("Function started")
   console.log(origin);
 
   const corsHeaders = {
-    "Access-Control-Allow-Origin": "https://contact-app-taupe-sigma.vercel.app",
+    "Access-Control-Allow-Origin": "http://contact-app-taupe-sigma.vercel.app",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, x-client-info, apikey, Authorization",
   }
