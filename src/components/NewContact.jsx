@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import supabase from "../supabase";
 import { SessionContext } from "./SessionContext";
-import Groq from "groq-sdk";
 
 function NewContact() {
   const { session } = useContext(SessionContext);
@@ -17,6 +16,7 @@ function NewContact() {
   });
   const [formError, setFormError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isGeneratingWithAi, setIsGeneratingWithAi] = useState(false);
 
   function handleInputChange(event) {
     setFormError(false);
@@ -60,56 +60,37 @@ function NewContact() {
     setIsLoading((prevState) => !prevState);
   }
 
-  //Using Fetch with GROQ API
   async function handleGenerateWithAi() {
-    const groqUrl = "https://api.groq.com/openai/v1/chat/completions";
+    setIsGeneratingWithAi((prevState) => !prevState);
 
-    const response = await fetch(groqUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.REACT_APP_GROQ_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "llama3-8b-8192",
-        messages: [
-          {
-            role: "user",
-            content: `You are an assistant that generates the following information: 
-            1- a name + last name: using characters from real sitcom series Friends, How I Met Your Mother, Suits, Billions or The Office. You choose, but it has to be real, don't invent;
-            2- a random brazilian phone number in this format xx9xxxxxxxx - DO not use spaces;
-            Return the result in JSON format like this: {"name": "", "phone_number": ""}
-            `,
+    try {
+      const response = await fetch(
+        "https://tbwgcyggrtizfsjuvved.supabase.co/functions/v1/generateWithAi",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session.access_token}`,
           },
-        ],
-      }),
-    });
+        }
+      );
 
-    const data = await response.json();
-    const content = data.choices[0].message.content;
-    const jsonMatch = content.match(/\{[\s\S]*\}/);
-    const jsonString = jsonMatch[0];
-    const result = JSON.parse(jsonString);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-    //Getting the image from Giphy
-    const giphyUrl = "https://api.giphy.com/v1/gifs/search";
-    const giphyAPIKey = process.env.REACT_APP_GIPHY_API_KEY;
-    const params = new URLSearchParams({
-      api_key: giphyAPIKey,
-      q: result.name,
-      limit: 1,
-    });
+      const result = await response.json();
 
-    const gf = await fetch(`${giphyUrl}?${params.toString()}`);
-    const gfData = await gf.json();
-    const giphyResponseUrl = gfData.data[0].images.original.url;
-
-    setContact((prevContact) => ({
-      ...prevContact,
-      name: result.name,
-      phone_number: result.phone_number,
-      profile_url: giphyResponseUrl,
-    }));
+      setContact((prevContact) => ({
+        ...prevContact,
+        name: result.name,
+        phone_number: result.phone_number,
+        profile_url: result.profile_url,
+      }));
+      setIsGeneratingWithAi((prevState) => !prevState);
+    } catch (error) {
+      console.log("Error:", error);
+    }
   }
 
   return (
@@ -118,8 +99,12 @@ function NewContact() {
         <h1 className="h1--login">New Contact</h1>
         <span>
           ✨
-          <p className="ai-contact" onClick={handleGenerateWithAi}>
-            Generate with AI
+          <p
+            className="ai-contact"
+            onClick={handleGenerateWithAi}
+            disabled={isGeneratingWithAi}
+          >
+            {isGeneratingWithAi ? "Generating..." : "Generate with AI"}
           </p>
         </span>
         <div className="inputWrap--addContact">
@@ -219,5 +204,59 @@ export default NewContact;
       name: result.name,
       phone_number: result.phone_number,
       profile_url: result.profile_url,
+    }));
+    */
+
+/*
+    FORMER API CALLS WITH API KEYS EXPOSED
+    
+     const groqUrl = "https://api.groq.com/openai/v1/chat/completions";
+
+    //Using Fetch with GROQ API
+    const response = await fetch(groqUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.REACT_APP_GROQ_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: "llama3-8b-8192",
+        messages: [
+          {
+            role: "user",
+            content: `You are an assistant that generates the following information: 
+            1- a name + last name: using characters from real sitcom series Friends, How I Met Your Mother, Suits, Billions or The Office. You choose, but it has to be real, don't invent;
+            2- a random brazilian phone number in this format xx9xxxxxxxx - DO not use spaces;
+            Return the result in JSON format like this: {"name": "", "phone_number": ""}
+            `,
+          },
+        ],
+      }),
+    });
+
+    const data = await response.json();
+    const content = data.choices[0].message.content;
+    const jsonMatch = content.match(/\{[\s\S]*\}/);
+    const jsonString = jsonMatch[0];
+    const result = JSON.parse(jsonString);
+
+    //Getting the image from Giphy
+    const giphyUrl = "https://api.giphy.com/v1/gifs/search";
+    const giphyAPIKey = process.env.REACT_APP_GIPHY_API_KEY;
+    const params = new URLSearchParams({
+      api_key: giphyAPIKey,
+      q: result.name,
+      limit: 1,
+    });
+
+    const gf = await fetch(`${giphyUrl}?${params.toString()}`);
+    const gfData = await gf.json();
+    const giphyResponseUrl = gfData.data[0].images.original.url;
+
+    setContact((prevContact) => ({
+      ...prevContact,
+      name: result.name,
+      phone_number: result.phone_number,
+      profile_url: giphyResponseUrl,
     }));
     */
