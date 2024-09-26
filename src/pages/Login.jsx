@@ -42,35 +42,7 @@ function Login() {
     }));
   }
 
-  //FUNCTION TO ADD LOGIN WITH EMAIL + PASSWORD
-  /*
-  async function signInWithEmail(e) {
-    e.preventDefault();
-
-    if (!user.password || user.password.length < 6) {
-      setFormError("Senha incorreta");
-      return;
-    } else if (!user.email) {
-      setFormError("Preencha o seu email cadastrado");
-      return;
-    }
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: user.email,
-      password: user.password,
-    });
-    if (error) {
-      setFormError("Email e/ou senha incorretos.");
-      return;
-    }
-    if (data) {
-      console.log("Done!");
-      //   navigate("/contact-list"); - PRECISO ROUTEAR PARA O ID CORRETO DA PESSOA
-    }
-  }
-*/
-
-  //FUNÇÃO CONSIDERANDO MAGIC LINK
+  //FUNCTION CONSIDERING MAGIC LINK
   async function signInWithEmail(e) {
     e.preventDefault();
 
@@ -126,6 +98,34 @@ function Login() {
 }
 
 export default Login;
+
+//FUNCTION TO ADD LOGIN WITH EMAIL + PASSWORD
+/*
+  async function signInWithEmail(e) {
+    e.preventDefault();
+
+    if (!user.password || user.password.length < 6) {
+      setFormError("Senha incorreta");
+      return;
+    } else if (!user.email) {
+      setFormError("Preencha o seu email cadastrado");
+      return;
+    }
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: user.password,
+    });
+    if (error) {
+      setFormError("Email e/ou senha incorretos.");
+      return;
+    }
+    if (data) {
+      console.log("Done!");
+      //   navigate("/contact-list"); - PRECISO ROUTEAR PARA O ID CORRETO DA PESSOA
+    }
+  }
+*/
 
 {
   /* 

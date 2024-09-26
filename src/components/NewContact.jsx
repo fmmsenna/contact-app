@@ -104,7 +104,9 @@ function NewContact() {
             onClick={handleGenerateWithAi}
             disabled={isGeneratingWithAi}
           >
-            {isGeneratingWithAi ? "Generating..." : "Generate with AI"}
+            {isGeneratingWithAi
+              ? "Coming up with something fun 🔥"
+              : "Generate with AI"}
           </p>
         </span>
         <div className="inputWrap--addContact">
