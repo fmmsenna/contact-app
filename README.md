@@ -2,7 +2,7 @@
 
 <p>This is a Contacts App project, similar to the one we have in iOS. </p>
 
-<p>You can test it live on this <a href="https://contact-app-taupe-sigma.vercel.app/">link</a>.</p>
+<p>You can see a 1-min demo <a href="https://youtu.be/dpfNJFNMRCo">here</a>.</p>
 
 <img src="public/HomePage.png"/>
 
