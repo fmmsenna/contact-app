@@ -2,7 +2,7 @@
 
 <p>This is a Contacts App project, similar to the one we have in iOS. </p>
 
-<p>You can see a 1-min demo <a href="https://youtu.be/dpfNJFNMRCo" target="_blank">here</a>.</p>
+<p>You can see a 1-min demo <a href="https://youtu.be/dpfNJFNMRCo" target="_blank" rel="noopener noreferrer">here</a>.</p>
 
 <img src="public/HomePage.png"/>
 
